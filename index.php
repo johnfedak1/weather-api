@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Weather-API</title>
 
-	<meta charset="UTF-8">
+  <title>Weather-API</title>
+
+  <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css2?family=Emblema+One&family=Lora&family=Overpass:ital,wght@0,400;1,100&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js" data-auto-replace-svg="nest"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
@@ -14,6 +16,54 @@
 
 <style type="text/css">
 
+/*nav styles*/
+ #nav {
+  background-color: white;
+  box-shadow: 0 6px 20px 0 rgb(0 0 0 / 19%); 
+  margin-bottom: 40px;
+}
+#nav-content {
+  height: 70px;
+  display: flex;
+  align-items: center;
+  flex-flow: row wrap;
+  font-family: Overpass, sans-serif !important;
+}
+.logo {
+  font-size: 45px;
+  color: #196db6;
+  font-weight: 800;
+}
+.home {
+  font-size: 25px;
+  font-weight: 800;
+}
+.home a {
+  text-decoration: none;
+  color: #196db6;
+  margin-right: 10px;
+  transition: color 200ms;
+}
+.home a:hover {
+  color: #3592e3;
+}
+.fa-home {
+  margin-right: 5px;
+}
+.alignleft {
+width:33.33333%;
+text-align:left;
+}
+.aligncenter {
+width:33.33333%;
+text-align:center;
+}
+.alignright {
+width:33.33333%;
+text-align:right;
+}
+
+/*weather styles*/
 .bottom-left {
   bottom: 8px;
   left: 16px;
@@ -45,15 +95,15 @@
   height: 50px;
   width: 50px;
   position: absolute;
-  top: 50%;
+  top: 65%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
 .main-col {
   max-width: 1300px; 
-  background-color: #f2f2f2; 
+  background-color: #ffffff; 
   border-radius: 2%; 
-  border: 1px solid lightgrey;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
 }
 .main-container {
   margin-top: 60px; 
@@ -61,21 +111,6 @@
 }
 .mobile-table {
   display: none;
-}
-.navbar {
-  border-radius: 0;
-  margin-bottom: 0;
-}
-.nav-brand {
-  text-decoration: none; 
-  color: inherit; 
-  margin-top: 5px;
-}
-.nav-link-margin {
-  margin-left: 10px;
-}
-.search-bar-margin {
-  margin-top: 25px;
 }
 .top-left {
   left: 10px;
@@ -91,31 +126,11 @@
   font-size: 20px; 
   margin-bottom: 50px;
 }
-@media only screen and (max-width: 600px) {
-  .city-name {
-    font-size: 1.4em;
-  }
-}
-@media only screen and (max-width: 920px) {
-  .city-name {
-    margin-top: 50px;
-  }
-}
-@media only screen and (max-width: 920px) {
-  .invalid-zip {
-    left: 50%;
-    position: absolute;
-    top: 20%;
-    transform: translate(-50%, -50%);
-  }
-}
-@media only screen and (max-width: 600px) {
-  .invalid-zip {
-    font-size: 0.9em;
-    left: 48%;
-    position: absolute;
-    top: 18%;
-    transform: translate(-50%, -50%);
+
+/*media queries*/
+@media only screen and (max-width: 365px) {
+  .weather-api {
+    font-size: 1.7em;
   }
 }
 @media only screen and (max-width: 400px) {
@@ -127,12 +142,25 @@
     transform: translate(-50%, -50%);
   }
 }
-@media only screen and (max-width: 600px) {
-  .table {
-    display: none;
+@media only screen and (max-width: 460px) {
+  .weather-api {
+    font-size: 2em;
   }
 }
 @media only screen and (max-width: 600px) {
+  .city-name {
+    font-size: 1.4em;
+  }
+  .invalid-zip {
+    font-size: 0.9em;
+    left: 48%;
+    position: absolute;
+    top: 18%;
+    transform: translate(-50%, -50%);
+  }
+  .table {
+    display: none;
+  }
   .mobile-table {
     display: block;
     display: flex;
@@ -141,6 +169,15 @@
   }
 }
 @media only screen and (max-width: 920px) {
+  .city-name {
+    margin-top: 50px;
+  }
+  .invalid-zip {
+    left: 50%;
+    position: absolute;
+    top: 20%;
+    transform: translate(-50%, -50%);
+  }
   .top-right {
     margin-top: 75px;
     position: static;
@@ -151,48 +188,29 @@
     margin-left: 0px;
   }
 }
-@media only screen and (max-width: 460px) {
-  .weather-api {
-    font-size: 2em;
-  }
-}
-@media only screen and (max-width: 365px) {
-  .weather-api {
-    font-size: 1.7em;
-  }
-}
+
+/*element styles*/
 td {
   text-align: center;
+}
+body {
+    background-color: #ECF5F9;
 }
 
 </style>
 
 </head>
-<body class="bg-dark">
+<body>
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light box-shadow">
-  <a class="h3 nav-brand" href="#">John Fedak</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarNavDropdown">
-    <ul class="navbar-nav">
-      <li class="nav-item">
-         <a class="nav-link nav-link-margin" aria-current="page" href="https://johnfedak.com/">Home</a>
-      </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle active" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Projects
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-          <a class="dropdown-item" href="https://johnfedak.com/quacker/">Social Media</a>
-          <a class="dropdown-item active" href="https://johnfedak.com/projects/weather/">Weather API</a>
-           <a class="dropdown-item" href="https://johnfedak.com/projects/notes/">Notes</a>
-        </div>
-      </li>
-    </ul>
+  <div id="nav" class="container-fluid">
+    <div class="row">
+      <div id="nav-content" class="col-12">
+        <div class="alignleft"></div>
+      <div class="logo aligncenter">JF</div>
+      <div class="home alignright"><a href="https://johnfedak.com/"><i class="fas fa-home fa-sm"></i>Home</a></div>
+    </div>
   </div>
-</nav>
+</div>
 
 <div class="container-fluid main-container">
   <div class="row" style="justify-content: center;">
@@ -235,6 +253,8 @@ td {
     </div>
   </div>
 </div>
+
+<iframe style="display: none;" width="650" height="450" src="https://embed.windy.com/embed2.html?lat=30.421&lon=-74.060&detailLat=40.421&detailLon=-74.060&width=650&height=450&zoom=5&level=surface&overlay=wind&product=ecmwf&menu=&message=&marker=&calendar=now&pressure=&type=map&location=coordinates&detail=&metricWind=default&metricTemp=default&radarRange=-1" frameborder="0"></iframe>
 
 <br>
 
